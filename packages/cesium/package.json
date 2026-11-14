@@ -19,7 +19,8 @@
     }
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "build": "vite build",
@@ -34,10 +35,11 @@
     "cesium": ">=1.120.0"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
-    "cesium": "^1.146.0",
+    "@microsoft/api-extractor": "^7.60.1",
     "@turbomap/core": "workspace:*",
     "@turbomap/scheduler": "workspace:*",
+    "@types/node": "^24.10.1",
+    "cesium": "^1.146.0",
     "typescript": "~5.9.3",
     "vite": "^8.0.0",
     "vite-plugin-dts": "^5.0.0"

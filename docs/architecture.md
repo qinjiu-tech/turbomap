@@ -120,9 +120,13 @@ registry=https://registry.npmmirror.com/
 strict-peer-dependencies=false
 ```
 
-当前安装走 npmmirror。官方源留在注释里。pnpm 默认会在 peer 范围对不齐时让安装失败。这个仓库里，库声明 `cesium >= 1.120`、`ol >= 9.5.0`，示例又各自声明自己的范围。关掉严格模式后，范围不完全重合时安装继续，终端里仍可能看到 peer 警告。
+当前安装走 npmmirror。官方源留在注释里，发布不读这一行。四个库的 `publishConfig` 写了 `access: public` 和 `registry: https://registry.npmjs.org/`。`pnpm publish` 因此发到官方源，不用再加 `--registry`。登录状态放在本机 `~/.npmrc`，令牌不要写进仓库。
 
-根包 `"private": true`。示例和文档也是 `private`。`pnpm publish` 从仓库根递归时不会把它们发出去。四个库的 `publishConfig.access` 是 `public`，发到 npm 时是公开包。
+pnpm 默认会在 peer 范围对不齐时让安装失败。这个仓库里，库声明 `cesium >= 1.120`、`ol >= 9.5.0`，示例又各自声明自己的范围。关掉严格模式后，范围不完全重合时安装继续，终端里仍可能看到 peer 警告。
+
+根包 `"private": true`。示例和文档也是 `private`。`pnpm publish` 从仓库根递归时不会把它们发出去。发布顺序是 `@turbomap/scheduler` 与 `@turbomap/core`，然后 `@turbomap/cesium` 与 `@turbomap/ol`。每个包的 `prepublishOnly` 会先 `pnpm build`。同一版本不能重复发布。
+
+远程仓库是 https://github.com/qinjiu-tech/turbomap.git ，默认分支是 `master`。这条分支禁止其他人更新、删除和强制推送。仓库管理员可以绕过。其他人从自己的分叉开分支并提交拉取请求。
 
 锁文件是 `pnpm-lock.yaml`。改依赖后用 `pnpm install` 更新它。不要手改锁文件来绕过解析。
 
@@ -148,7 +152,7 @@ strict-peer-dependencies=false
 4. 默认 `MAP_SOURCE` 不是 `0`，三个包名被别名到源码入口。
 5. `@vitejs/plugin-vue` 编译示例的 `.vue`。
 6. `vite-plugin-cesium` 复制 Cesium Worker，并设置静态资源路径。
-7. 开发服务器听 `127.0.0.1:5173`。浏览器打开 `index.html`，模块脚本加载 `src/main.ts`，`createApp(App).mount('#app')`。
+7. 开发服务器听 `127.0.0.1:5174`。浏览器打开 `index.html`，模块脚本加载 `src/main.ts`，`createApp(App).mount('#app')`。
 
 改 `packages/` 里的源码后，Vite 会按别名重新编译，不用先 `pnpm build`。
 

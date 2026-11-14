@@ -71,20 +71,45 @@ MAP_SOURCE=0 pnpm dev
 
 只跑一个包时用过滤器，例如 `pnpm --filter @turbomap/cesium typecheck`。示例单独构建是 `pnpm --filter @turbomap/vue3-example build`。
 
-## 构建与发布
+## Git 提交
 
-`@turbomap/core` 不依赖调度器。`@turbomap/cesium` 和 `@turbomap/ol` 依赖调度器，Cesium 包还依赖 core。先发 scheduler 和 core，再发两个引擎包。
+远程是 https://github.com/qinjiu-tech/turbomap.git ，默认分支是 `master`。
+
+`master` 开了规则：禁止其他人更新、删除和强制推送。仓库管理员可以绕过，所以维护者可以直接提交和合并。其他人从自己的分叉新建分支、修改自己的分支，再提拉取请求。合并进 `master` 由维护者完成。
+
+不要提交 `node_modules`、`dist`、`.pnpm-store`。提交前先跑：
 
 ```bash
-pnpm --filter @turbomap/scheduler publish
-pnpm --filter @turbomap/core publish
-pnpm --filter @turbomap/cesium publish
-pnpm --filter @turbomap/ol publish
+pnpm typecheck
+pnpm lint
+pnpm format:check
+pnpm build
 ```
 
-每个包的 `prepublishOnly` 会先构建自己。工作区里的 `workspace:*` 会在 `pnpm publish` 时写成具体版本。`publishConfig.access` 已是 `public`。根包、示例、文档都是 `private`，不会被发出去。
+## 发布到 npm
 
-发之前在本仓库跑过 `pnpm typecheck` 和 `pnpm build`。需要确认安装包入口时，再用上一节的 `MAP_SOURCE=0 pnpm dev`。
+安装走项目 `.npmrc` 里的 npmmirror。发布走每个库 `publishConfig.registry` 里的 `https://registry.npmjs.org/`，不用再手写 `--registry`。
+
+先登录官方源。登录状态写在本机 `~/.npmrc`，不要把令牌写进仓库：
+
+```bash
+npm login --registry https://registry.npmjs.org/
+```
+
+账号如果要求「发布时也要两步验证」，普通登录之后仍会被拒绝。把两步验证改成只在登录时验证，或使用勾选了 Bypass 2FA 的令牌。
+
+`@turbomap/cesium` 和 `@turbomap/ol` 依赖已发布的调度器和点模型。先发前两个，再发后两个：
+
+```bash
+pnpm --filter @turbomap/scheduler publish --access public
+pnpm --filter @turbomap/core publish --access public
+pnpm --filter @turbomap/cesium publish --access public
+pnpm --filter @turbomap/ol publish --access public
+```
+
+每个包的 `prepublishOnly` 会先构建自己。`workspace:*` 在发布时写成具体版本。同一版本不能重复发布，发新版前先改 `version`。根包、示例、文档都是 `private`，不会被发出去。
+
+发之前跑过 `pnpm typecheck` 和 `pnpm build`。需要确认安装包入口时，再用上一节的 `MAP_SOURCE=0 pnpm dev`。
 
 ## 在业务项目中使用
 
@@ -121,4 +146,4 @@ OpenLayers 包同样可以分帧打点。更完整的说明在 `docs/`，本地�
 
 ## 许可证
 
-MIT，见 [LICENSE](LICENSE)。
+学习、研究、教学可以免费使用。商业使用须事先书面授权。见 [LICENSE](LICENSE)。

@@ -19,7 +19,8 @@
     }
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "build": "vite build",
@@ -27,6 +28,7 @@
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.60.1",
     "@types/node": "^24.10.1",
     "typescript": "~5.9.3",
     "vite": "^8.0.0",
