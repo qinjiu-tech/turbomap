@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "OpenLayers 适配：地图与十万级 WebGL 打点。",
   "type": "module",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
   "files": [
     "dist"

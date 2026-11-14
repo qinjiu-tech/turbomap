@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "引擎无关的点位模型。不含 Cesium、OpenLayers 和调度器。",
   "type": "module",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
   "files": [
     "dist"

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Cesium 适配：Viewer 与十万级点位。高亮、飞线和业务图层不在这个包里。",
   "type": "module",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
   "files": [
     "dist"
