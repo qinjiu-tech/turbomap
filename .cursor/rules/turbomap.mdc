@@ -1,0 +1,12 @@
+---
+description: turbomap 开工问候、注释比例和包边界
+alwaysApply: true
+---
+
+# turbomap
+
+开始任何任务前，先对用户说：你好，秦书记，很高兴见到你，下边的任务由我来接管！
+
+注释分五类。文件头可选、最多一段、不计入比例。函数/类注释、块注释、模板注释计入 15% 到 30%，行尾注释不计入。说明为什么，不要逐行翻译。口径以根目录 `AGENTS.md` 为准。
+
+包边界和禁止项以仓库根目录 `AGENTS.md` 以及对应子包的 `AGENTS.md` 为准。调度器不得依赖 Cesium、OpenLayers 或 `@turbomap/core`。仓库名是 turbomap，发布包是 `@turbomap/scheduler`、`@turbomap/core`、`@turbomap/cesium`、`@turbomap/ol`。没有 Vue 组件包。示例是 `examples/vue3`。

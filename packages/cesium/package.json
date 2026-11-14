@@ -1,0 +1,51 @@
+{
+  "name": "@turbomap/cesium",
+  "version": "0.1.0",
+  "description": "Cesium 适配：Viewer 与十万级点位。高亮、飞线和业务图层不在这个包里。",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@turbomap/core": "workspace:*",
+    "@turbomap/scheduler": "workspace:*"
+  },
+  "peerDependencies": {
+    "cesium": ">=1.120.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "cesium": "^1.146.0",
+    "@turbomap/core": "workspace:*",
+    "@turbomap/scheduler": "workspace:*",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0",
+    "vite-plugin-dts": "^5.0.0"
+  },
+  "keywords": [
+    "turbomap",
+    "cesium",
+    "gis",
+    "3d"
+  ]
+}

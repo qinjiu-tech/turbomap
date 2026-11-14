@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@turbomap/core": ["./src/ts-paths/core.ts"],
+      "@turbomap/scheduler": ["./src/ts-paths/scheduler.ts"]
+    }
+  },
+  "include": ["src"]
+}

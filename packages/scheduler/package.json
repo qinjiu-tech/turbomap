@@ -1,0 +1,40 @@
+{
+  "name": "@turbomap/scheduler",
+  "version": "0.1.0",
+  "description": "与地图引擎无关的分帧任务调度器",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json --declaration && tsc -p tsconfig.node.json --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0",
+    "vite-plugin-dts": "^5.0.0"
+  },
+  "keywords": [
+    "turbomap",
+    "scheduler",
+    "gis"
+  ]
+}

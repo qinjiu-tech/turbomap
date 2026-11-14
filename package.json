@@ -1,0 +1,27 @@
+{
+  "name": "turbomap",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.2.2",
+  "scripts": {
+    "dev": "pnpm --filter @turbomap/vue3-example dev",
+    "build": "pnpm --filter @turbomap/scheduler build && pnpm --filter @turbomap/core build && pnpm --filter @turbomap/cesium build && pnpm --filter @turbomap/ol build",
+    "typecheck": "pnpm --filter @turbomap/scheduler typecheck && pnpm --filter @turbomap/core typecheck && pnpm --filter @turbomap/cesium typecheck && pnpm --filter @turbomap/ol typecheck && pnpm --filter @turbomap/vue3-example typecheck",
+    "docs:dev": "pnpm --filter @turbomap/docs dev",
+    "docs:build": "pnpm --filter @turbomap/docs build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.9.0",
+    "eslint": "^10.13.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "prettier": "^3.9.10"
+  }
+}

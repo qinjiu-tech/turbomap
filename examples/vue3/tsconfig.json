@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "paths": {
+      "@turbomap/cesium": ["../../packages/cesium/src/index.ts"],
+      "@turbomap/ol": ["../../packages/ol/src/index.ts"],
+      "@turbomap/core": ["../../packages/core/src/index.ts"],
+      "@turbomap/scheduler": ["../../packages/scheduler/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}
